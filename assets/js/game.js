@@ -1,16 +1,47 @@
-window.alert("This is an alert! JavaScript is running!");
-// this creates a function named "fight"
-var playerName = window.prompt("What is your robot's name?");
-// What is this? logs consoles of the running code
-console.log(playerName);
-console.log("This logs a string, good for leaving yourself a message");
-// this will do math and log 20
-console.log(10 + 10);
-// what is this? adding a sentance with "our robot's name is" + tells it to find the varible name playerName
-console.log("Our robot's name is " + playerName);
-// Note the lack of quotation marks around playerName
-window.alert(playerName);
-function fight() {
-    window.alert("This fight has begun!");
+var playerName = window.prompt("What is your robot's name");
+var playerHealth = 100;
+// check to see if the value of the playerHealth variable is greater than 0
+if (playerHealth > 0) {
+    console.log("Your player is still alive!");
 }
-// fight();
+var playerAttack = 10;
+if (playerHealth === 0) {
+    console.log("This will not run.");
+  } 
+  else {
+    console.log("This will run instead.");
+  }
+// you can also log multiple values at once like this
+console.log(playerName, playerAttack, playerHealth);
+
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyActtack = 12;
+
+var fight = function() {
+    // Alert players that they are starting the round
+    window.alert("Wellcome to Robot Gladiators!");
+
+    // Substarct the value of 'playerAttack' from the value of enemyHealth' use that result to update the value in the 'enemyHealth' variable
+    enemyHealth = enemyHealth - playerAttack;
+    // Log a resulting message to the console so we know that it worked.
+    console.log(
+        playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining. "
+    );
+
+    // check enemy's health
+    if (enemyHealth <= 0) {
+    window.alert(enemyName + " has died!");
+    }
+    else {
+        window.alert(enemyName + " still has " + enemyHealth + " health left.");
+    }
+    // Substract the value of enemyAttack' from the value of playerHealth' and use that result t o update the value in the 'playerHealth' variable.
+    playerHealth = playerHealth - enemyActtack
+    // Log a resulting message to the console so we know that it worked.
+    console.log(
+        enemyName + " atacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+    )
+};
+// execute the function
+fight();
