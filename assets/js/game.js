@@ -11,7 +11,6 @@ console.log(enemyNames);
 console.log(enemyNames.length);
 console.log(enemyNames[0]);
 console.log(enemyNames[3]);
-
 // fight function (now with parameter for enemy's name)
 var fight = function(enemyName) {
   while (playerHealth > 0 && enemyHealth > 0) {
@@ -97,6 +96,14 @@ for (var i = 0; i < enemyNames.length; i++) {
     // pass the pickedEnemyName variable's value into the fight function, where it will assume the value of the enemyName parameter
     fight(pickedEnemyName);
   }
+  if (playerHealth > 0 && i < enemyNames.length - 1){
+    // ask if player wants to use the store before next round
+    var shopConfirm = confirm("The fight is over, visit the store before the next round");
+    // if yes, tale them to the store() function
+    if (shopConfirm){
+     shop(); 
+    }
+  }
   // if player isn't alive, stop the game
   else {
     window.alert('You have lost your robot in battle! Game Over!');
@@ -106,6 +113,38 @@ for (var i = 0; i < enemyNames.length; i++) {
   // After the loop ends, player is either out of health or enemies to fight, so run the endGame Function
   endGame();
 }; // end of startgame function
+
+
+var shop = function() {
+  var shopOptionPrompt = prompt(
+    "Would you like to Refill your health, Upgrade your attack, or leave the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE' to make a choice."
+    );
+  switch (shopOptionPrompt) {
+    case "refill":
+      alert("Refilling player's health by 20 for 7 dollars.")
+      // Increase health and decrease money
+      playerHealth = playerHealth + 20;
+      playerMoney = playerMoney - 7;
+      break;
+    case "upgrade":
+      alert("Upgrading player's attack by 6 for 7 dollars.")
+      // Increase attack and decrease money
+      playerAttack = playerAttack + 6;
+      playerMoney = playerMoney - 7;
+      break;
+    case "leave":
+      alert("Leaving the store.")
+      // do nothing, so function will end
+      break;
+    default:
+      alert("You did not pick a valid option. Try again.")
+      // call shop() again to force player to pick a valid option
+      shop();
+      break;
+  }
+};
+
+
 
 var endGame = function() {
   alert("The game has now ended. Lets see how you did!");
